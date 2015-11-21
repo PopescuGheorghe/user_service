@@ -7,8 +7,8 @@ gem 'rails-api'
 
 gem 'spring', :group => :development
 
-
-gem 'sqlite3'
+# Use postgresql database
+gem 'pg'
 
 
 
