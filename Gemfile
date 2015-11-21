@@ -10,19 +10,26 @@ gem 'spring', :group => :development
 # Use postgresql database
 gem 'pg'
 
+group :development, :test do
+  # Debugging gems
+  gem 'byebug', '3.5.1'
+  gem 'pry-byebug', '2.0.0'
+end
 
+group :test do
+  gem 'rspec-rails', '~> 2.14'
+  gem 'factory_girl_rails'
+  gem 'shoulda-matchers'
+  gem 'timecop'
+  gem 'faker'
+  gem 'database_cleaner'
+end
 
-# To use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+# User management and authorisation gem
+gem 'devise', '3.4.0'
 
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
+# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+gem 'jbuilder', '~> 1.2'
 
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano', :group => :development
-
-# To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
+# Translations
+gem 'rails-i18n', '~> 4.0.0' # For 4.0.x
