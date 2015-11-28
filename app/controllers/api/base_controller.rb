@@ -2,7 +2,7 @@
 #require 'new_relic/agent/instrumentation/rails3/action_controller'
 #require 'new_relic/agent/instrumentation/rails3/errors'
 module Api
-  class BaseController < ActionController::API
+  class BaseController < ActionController::Base
     # minimum required controller functionality for rendering, proper mime-type
     # setting, and rescue_from functionality
 
@@ -15,7 +15,7 @@ module Api
       # ActionController::Renderers::All,
       # ActionController::ImplicitRender,
       # ActionController::RackDelegation,
-      ActionController::MimeResponds
+      #ActionController::MimeResponds
       # AbstractController::Callbacks,
       # ActionController::Head,
       # ActionController::Rescue,
