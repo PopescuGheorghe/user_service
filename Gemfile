@@ -26,6 +26,7 @@ group :test do
   gem 'timecop'
   gem 'faker'
   gem 'database_cleaner'
+  gem 'simplecov', :require => false
 end
 
 # User management and authorisation gem
