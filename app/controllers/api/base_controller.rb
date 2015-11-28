@@ -41,8 +41,7 @@ module Api
       end
     end
 
-    # Exception handler for invalid api requests, forms a message like
-    # in the same way as our services do
+    # Exception handler for invalid api requests
     rescue_from Exception do |ex|
       respond_to do |format|
         format.json do
@@ -64,6 +63,17 @@ module Api
     # returns - data in json format
     def build_data_object(obj)
       { success: true, data: obj }.to_json
+    end
+
+    # Public: generates error response
+    # obj - object that contains the data sent in a request
+    # returns json
+    def build_error_object(obj)
+      obj_errors = Array.new
+      obj.errors.messages.each do |k,v|
+        obj_errors <<  "#{k} #{v.join}"
+      end
+      { success: false, erros: obj_errors }.to_json
     end
   end
 end
