@@ -15,7 +15,7 @@ module Api
       # ActionController::Renderers::All,
       # ActionController::ImplicitRender,
       # ActionController::RackDelegation,
-      # ActionController::MimeResponds,
+      ActionController::MimeResponds
       # AbstractController::Callbacks,
       # ActionController::Head,
       # ActionController::Rescue,

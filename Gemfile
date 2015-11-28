@@ -10,6 +10,9 @@ gem 'spring', :group => :development
 # Use postgresql database
 gem 'pg'
 
+# Use respond_to
+gem "responders"
+
 group :development, :test do
   # Debugging gems
   gem 'byebug', '3.5.1'
