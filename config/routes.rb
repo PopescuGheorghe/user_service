@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     namespace :v1, path: '/' do
       resources :sessions,  :only => [:create, :destroy]
       resources :users,     :only => [:index, :show, :create]
+      resources :userpassword
     end
   end
 end
