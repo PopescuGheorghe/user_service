@@ -12,7 +12,7 @@ module Api
           user.generate_authentication_token!
           user.save
 
-          render json: build_data_object(user), status: 200
+          render json: build_success_object(user), status: 200
         else
           render json: { success: false, errors: I18n.t('sessions.create.error') }, status: 422
         end
