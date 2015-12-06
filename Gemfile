@@ -5,6 +5,10 @@ gem 'rails', '4.2.4'
 
 gem 'rails-api'
 
+gem 'mandrill-api'
+
+gem 'figaro'
+
 gem 'spring', :group => :development
 
 # Use postgresql database
@@ -14,6 +18,7 @@ gem 'pg'
 gem "responders"
 
 group :development, :test do
+  gem "letter_opener"
   # Debugging gems
   gem 'byebug', '3.5.1'
   gem 'pry-byebug', '2.0.0'

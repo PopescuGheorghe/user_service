@@ -5,3 +5,6 @@ en:
   api:
     response:
       unauthorized: "Unauthorized access"
+    mailer:
+      welcome:
+        error: "Inavlid parameters. Please provide: email, template_slug, url"
