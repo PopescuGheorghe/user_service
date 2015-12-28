@@ -21,6 +21,15 @@ module Api
         end
       end
 
+      def destroy
+        user = User.find(params[:id])
+        if user.destroy
+          render json: build_data_object(user), status: 201
+        else
+          render json: build_error_object(user), status: 403
+        end
+      end
+
       private
 
       def user_params
