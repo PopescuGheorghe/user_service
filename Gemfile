@@ -11,6 +11,7 @@ gem 'spring', :group => :development
 gem 'pg'
 
 gem 'swagger-docs'
+gem 'rack-cors', :require => 'rack/cors'
 
 # Use respond_to
 gem "responders"
