@@ -92,6 +92,7 @@ GEM
       byebug (~> 3.4)
       pry (~> 0.10)
     rack (1.6.4)
+    rack-cors (0.4.0)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.4)
@@ -180,6 +181,7 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   pg
   pry-byebug (= 2.0.0)
+  rack-cors
   rails (= 4.2.4)
   rails-api
   rails-i18n (~> 4.0.0)
