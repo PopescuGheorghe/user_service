@@ -10,6 +10,8 @@ gem 'spring', :group => :development
 # Use postgresql database
 gem 'pg'
 
+gem 'swagger-docs'
+
 # Use respond_to
 gem "responders"
 

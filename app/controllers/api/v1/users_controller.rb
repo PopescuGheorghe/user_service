@@ -4,8 +4,26 @@ module Api
       before_filter :authenticate
       respond_to    :json
 
+      swagger_controller :users, "Users"
+
+      swagger_api :index do
+        summary "Fetches all users"
+        response :unauthorized
+        response :not_acceptable
+      end
+
       def index
        respond_with build_data_object(User.all)
+      end
+
+      swagger_controller :users, "Users"
+
+      swagger_api :show do
+        summary "Fetches user by id"
+        param :path, :id, :integer, :required, "User ID"
+        param :header, :Authorization, :required, "Authentication Token"
+        response :unauthorized
+        response :not_acceptable
       end
 
       def show
