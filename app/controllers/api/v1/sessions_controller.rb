@@ -2,6 +2,16 @@ module Api
   module V1
     class SessionsController < Api::BaseController
 
+      swagger_controller :sessions, "Sessions"
+
+      swagger_api :create do
+        summary "Login"
+        param :form, :user_email, :string, :required, "Email"
+        param :form, :user_password, :string, :required, "Password"
+        response :unauthorized
+        response :bad_request
+      end
+
       def create
         user_password = params[:password]
         user_email    = params[:email]

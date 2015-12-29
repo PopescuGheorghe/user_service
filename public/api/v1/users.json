@@ -31,18 +31,6 @@
       "operations": [
         {
           "summary": "Fetches user by id",
-          "responseMessages": [
-            {
-              "code": 401,
-              "responseModel": null,
-              "message": "Unauthorized"
-            },
-            {
-              "code": 406,
-              "responseModel": null,
-              "message": "Not Acceptable"
-            }
-          ],
           "parameters": [
             {
               "paramType": "path",
@@ -57,6 +45,18 @@
               "type": "required",
               "description": null,
               "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 401,
+              "responseModel": null,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 406,
+              "responseModel": null,
+              "message": "Not Acceptable"
             }
           ],
           "method": "get",

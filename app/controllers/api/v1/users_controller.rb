@@ -16,8 +16,6 @@ module Api
        respond_with build_data_object(User.all)
       end
 
-      swagger_controller :users, "Users"
-
       swagger_api :show do
         summary "Fetches user by id"
         param :path, :id, :integer, :required, "User ID"
