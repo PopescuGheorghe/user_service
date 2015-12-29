@@ -12,14 +12,14 @@
           "parameters": [
             {
               "paramType": "form",
-              "name": "user_email",
+              "name": "email",
               "type": "string",
               "description": "Email",
               "required": true
             },
             {
               "paramType": "form",
-              "name": "user_password",
+              "name": "password",
               "type": "string",
               "description": "Password",
               "required": true
