@@ -4,7 +4,7 @@
   "basePath": "https://harenhall-api.herokuapp.com/",
   "apis": [
     {
-      "path": "api/v1/users.{format}",
+      "path": "/api/v1/users.{format}",
       "description": "Users"
     }
   ],
