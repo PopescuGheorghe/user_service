@@ -3,6 +3,7 @@ module Api
     class SessionsController < Api::BaseController
 
       def create
+        binding.pry
         user_password = params[:password]
         user_email    = params[:email]
         user          = User.find_by(email: user_email) if user_email.present?

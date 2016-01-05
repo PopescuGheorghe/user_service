@@ -10,6 +10,9 @@ gem 'spring', :group => :development
 # Use postgresql database
 gem 'pg'
 
+gem 'swagger-blocks'
+gem 'rack-cors', :require => 'rack/cors'
+
 # Use respond_to
 gem "responders"
 
