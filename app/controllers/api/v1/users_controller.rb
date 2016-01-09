@@ -21,10 +21,19 @@ module Api
         end
       end
 
+      def update
+        user = User.find(params[:id])
+        if user.update(user_params)
+          render json: build_data_object(user), status: 200
+        else
+          render json: build_error_object(user), status: 403
+        end
+      end
+
       def destroy
         user = User.find(params[:id])
         if user.destroy
-          render json: build_data_object(user), status: 201
+          render json: build_data_object([]), status: 200
         else
           render json: build_error_object(user), status: 403
         end
@@ -33,7 +42,7 @@ module Api
       private
 
       def user_params
-        params.require(:user).permit(:email, :password)
+        params.permit(:email, :password)
       end
 
     end

@@ -73,7 +73,7 @@ module Api
       obj.errors.messages.each do |k,v|
         obj_errors <<  "#{k} #{v.join}"
       end
-      { success: false, erros: obj_errors }.to_json
+      { success: false, errors: obj_errors }.to_json
     end
   end
 end

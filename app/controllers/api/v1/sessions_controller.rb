@@ -1,6 +1,7 @@
 module Api
   module V1
     class SessionsController < Api::BaseController
+      respond_to :json
 
       def create
         user_password = params[:password]
@@ -14,15 +15,19 @@ module Api
 
           render json: build_data_object(user), status: 200
         else
-          render json: { success: false, errors: I18n.t('sessions.create.error') }, status: 422
+         fail InvalidAPIRequest.new(I18n.t('sessions.create.error'), 401)
         end
       end
 
       def destroy
         user = User.find_by(auth_token: params[:id])
-        user.generate_authentication_token!
-        user.save
-        head 204
+        if user.present?
+          user.generate_authentication_token!
+          user.save
+          head 204
+        else
+           fail InvalidAPIRequest.new(I18n.t('sessions.destroy.error'), 401)
+        end
       end
 
       def sign_in(resource)

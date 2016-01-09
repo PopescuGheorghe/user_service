@@ -9,7 +9,7 @@ describe Api::V1::SessionsController do
     context 'when the credentials are correct' do
       before(:each) do
         credentials = { email: @user.email, password: @user.password }
-        post :create, credentials
+        post :create, credentials, format: :json
       end
 
       it 'returns the user record corresponding to the given credentials' do
@@ -26,23 +26,20 @@ describe Api::V1::SessionsController do
 
         json_response = JSON.parse(response.body, symbolize_names: true)
         expect(json_response[:data]).to eql expected_response['data']
+        expect(response.status).to eql 200
       end
-
-      it { should respond_with 200 }
     end
 
     context 'when the credentials are incorrect' do
       before(:each) do
-        credentials = { email: @user.email, password: 'invalidpassword' }
-        post :create, credentials
+        post :create, email: @user.email, password: 'invalidpassword', format: :json
       end
 
       it 'returns a json with an error' do
         json_response = JSON.parse(response.body, symbolize_names: true)
-        expect(json_response[:errors]).to eql I18n.t('sessions.create.error')
+        expect(json_response).to have_key(:errors)
+        expect(response.status).to eql 401
       end
-
-      it { should respond_with 422 }
     end
   end
 
@@ -52,9 +49,26 @@ describe Api::V1::SessionsController do
       @user.generate_authentication_token!
       @user.save
       sign_in @user
-      delete :destroy, id: @user.auth_token
     end
 
-    it { should respond_with 204 }
+    context 'when the credentials are correct' do
+      before(:each) do
+        delete :destroy, id: @user.auth_token
+      end
+
+      it { should respond_with 204 }
+    end
+
+    context 'when the credentials are incorrect' do
+      before(:each) do
+        delete :destroy, id: 1, format: :json
+      end
+
+      it 'returns a json with an error' do
+        json_response = JSON.parse(response.body, symbolize_names: true)
+        expect(json_response).to have_key(:errors)
+        expect(response.status).to eql 401
+      end
+    end
   end
 end

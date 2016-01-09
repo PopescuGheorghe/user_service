@@ -1,7 +1,9 @@
 FactoryGirl.define do
   factory :user do |f|
-    f.email Faker::Internet.email
+    f.email { Faker::Internet.email }
     f.password Faker::Internet.password
   end
+
+  before(:create) { |user| user.generate_authentication_token! }
 
 end
