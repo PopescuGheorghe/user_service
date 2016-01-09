@@ -1,0 +1,10 @@
+Rubocop - https://github.com/bbatsov/rubocop
+        - static code analyzer
+        - run with rubocop filename.rb
+
+Rubycritic - https://github.com/whitesmith/rubycritic
+           - code quality reporter
+           - run with rubycritic filename.rb
+
+NewRelic - https://github.com/newrelic/rpm
+         - performance management system
