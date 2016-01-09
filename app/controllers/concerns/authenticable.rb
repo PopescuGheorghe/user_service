@@ -22,4 +22,10 @@ module Authenticable
     return unless user.present?
     user[:token_created_at] + 24.hours > Time.now
   end
+
+  # Public: Devise methods overwrites
+  # returns User
+  def current_user
+    current_user ||= User.find_by(auth_token: request.headers['Authorization'])
+  end
 end
