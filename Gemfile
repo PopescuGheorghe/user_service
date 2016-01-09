@@ -13,6 +13,16 @@ gem 'pg'
 # New Relic
 gem 'newrelic_rpm'
 
+# Acceptance testing
+gem 'capybara'
+gem 'selenium-webdriver', '~> 2.48'
+
+# Documentation
+gem 'swagger-docs'
+
+# Support for Cross-Origin Resource Sharing
+gem 'rack-cors', '~> 0.3.1'
+
 # Use respond_to
 gem "responders"
 
