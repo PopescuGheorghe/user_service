@@ -1,6 +1,6 @@
-#require 'new_relic/agent/instrumentation/controller_instrumentation'
-#require 'new_relic/agent/instrumentation/rails3/action_controller'
-#require 'new_relic/agent/instrumentation/rails3/errors'
+require 'new_relic/agent/instrumentation/controller_instrumentation'
+require 'new_relic/agent/instrumentation/rails3/action_controller'
+require 'new_relic/agent/instrumentation/rails3/errors'
 module Api
   class BaseController < ActionController::Base
     # minimum required controller functionality for rendering, proper mime-type
@@ -21,9 +21,9 @@ module Api
       # ActionController::Rescue,
       # ActionController::Instrumentation,
       # ActiveRecord::Railties::ControllerRuntime,
-      # NewRelic::Agent::Instrumentation::ControllerInstrumentation,
-      # NewRelic::Agent::Instrumentation::Rails3::ActionController,
-      # NewRelic::Agent::Instrumentation::Rails3::Errors,
+      NewRelic::Agent::Instrumentation::ControllerInstrumentation,
+      NewRelic::Agent::Instrumentation::Rails3::ActionController,
+      NewRelic::Agent::Instrumentation::Rails3::Errors
       # ActionController::HttpAuthentication::Token::ControllerMethods
 
     ].each { |m| include m }

@@ -11,7 +11,7 @@ describe Authenticable, type: :controller do
   describe 'unauthorized authentication' do
     before do
       user = FactoryGirl.create :user
-      authentication.stub(:current_user).and_return(nil)
+      allow_any_instance_of(Authentication).to receive(:current_user).and_return(nil)
       response.stub(:response_code).and_return(401)
       response.stub(:body).and_return({ success: false, 'errors' => I18n.t('api.response.unauthorized') }.to_json)
       authentication.stub(:response).and_return(response)

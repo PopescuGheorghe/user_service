@@ -81,6 +81,7 @@ GEM
     mini_portile2 (2.0.0)
     minitest (5.8.3)
     multi_json (1.11.2)
+    newrelic_rpm (3.14.1.311)
     nokogiri (1.6.7.1)
       mini_portile2 (~> 2.0.0.rc2)
     orm_adapter (0.5.0)
@@ -179,6 +180,7 @@ DEPENDENCIES
   factory_girl_rails
   faker
   jbuilder (~> 1.2)
+  newrelic_rpm
   pg
   pry-byebug (= 2.0.0)
   rails (= 4.2.4)

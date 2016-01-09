@@ -10,6 +10,9 @@ gem 'spring', :group => :development
 # Use postgresql database
 gem 'pg'
 
+# New Relic
+gem 'newrelic_rpm'
+
 # Use respond_to
 gem "responders"
 

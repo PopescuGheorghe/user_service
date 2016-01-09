@@ -3,6 +3,7 @@ ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'simplecov'
+require 'database_cleaner'
 
 SimpleCov.start
 
@@ -70,4 +71,24 @@ RSpec.configure do |config|
   # https://relishapp.com/rspec/rspec-rails/v/3-0/docs
   config.infer_spec_type_from_file_location!
   config.include Devise::TestHelpers, type: :controller
+
+  # database_cleaner
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.around(:each) do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
+  end
+
+  # warnings deprecation
+  config.mock_with :rspec do |c|
+    c.syntax = [:should, :expect]
+  end
+  config.expect_with :rspec do |c|
+    c.syntax = [:should, :expect]
+  end
 end
