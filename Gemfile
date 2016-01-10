@@ -12,6 +12,7 @@ gem 'pg'
 
 # New Relic
 gem 'newrelic_rpm'
+gem 'rails-api-newrelic'
 
 # Acceptance testing
 gem 'capybara'
