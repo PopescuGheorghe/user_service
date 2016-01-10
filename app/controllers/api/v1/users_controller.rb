@@ -14,6 +14,7 @@ module Api
 
       def create
         user = User.new(user_params)
+        user.generate_authentication_token!
         if user.save
           render json: build_data_object(user), status: 201
         else
