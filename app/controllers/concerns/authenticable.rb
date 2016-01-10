@@ -1,5 +1,4 @@
 module Authenticable
-
   # Public: validates the token
   # returns - boolean
   def authenticate

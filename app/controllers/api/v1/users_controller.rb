@@ -2,10 +2,10 @@ module Api
   module V1
     class UsersController < Api::BaseController
       before_filter :authenticate
-      respond_to    :json
+      respond_to :json
 
       def index
-       respond_with build_data_object(User.all)
+        respond_with build_data_object(User.all)
       end
 
       def show
@@ -44,7 +44,6 @@ module Api
       def user_params
         params.permit(:email, :password)
       end
-
     end
   end
 end

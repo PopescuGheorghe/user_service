@@ -3,12 +3,12 @@ module Api
     class SessionsController < Api::BaseController
       respond_to :json
 
-      swagger_controller :sessions, "Sessions"
+      swagger_controller :sessions, 'Sessions'
 
       swagger_api :create do
-        summary "Login"
-        param :form, :email, :string, :required, "Email"
-        param :form, :password, :string, :required, "Password"
+        summary 'Login'
+        param :form, :email, :string, :required, 'Email'
+        param :form, :password, :string, :required, 'Password'
         response :unauthorized
       end
 
@@ -17,14 +17,14 @@ module Api
         user_email    = params[:email]
         user          = User.find_by(email: user_email) if user_email.present?
 
-        if user.present? and user.valid_password? user_password
+        if user.present? && user.valid_password?(user_password)
           sign_in user
           user.generate_authentication_token!
           user.save
 
           render json: build_data_object(user), status: 200
         else
-         fail InvalidAPIRequest.new(I18n.t('sessions.create.error'), 401)
+          fail InvalidAPIRequest.new(I18n.t('sessions.create.error'), 401)
         end
       end
 
@@ -35,7 +35,7 @@ module Api
           user.save
           head 204
         else
-           fail InvalidAPIRequest.new(I18n.t('sessions.destroy.error'), 401)
+          fail InvalidAPIRequest.new(I18n.t('sessions.destroy.error'), 401)
         end
       end
 

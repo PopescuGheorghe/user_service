@@ -15,7 +15,7 @@ module Api
       # ActionController::Renderers::All,
       # ActionController::ImplicitRender,
       # ActionController::RackDelegation,
-      #ActionController::MimeResponds
+      # ActionController::MimeResponds
       # AbstractController::Callbacks,
       # ActionController::Head,
       # ActionController::Rescue,
@@ -69,9 +69,9 @@ module Api
     # obj - object that contains the data sent in a request
     # returns json
     def build_error_object(obj)
-      obj_errors = Array.new
-      obj.errors.messages.each do |k,v|
-        obj_errors <<  "#{k} #{v.join}"
+      obj_errors = []
+      obj.errors.messages.each do |k, v|
+        obj_errors << "#{k} #{v.join}"
       end
       { success: false, errors: obj_errors }.to_json
     end
