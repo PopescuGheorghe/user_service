@@ -14,7 +14,7 @@ gem 'pg'
 gem 'newrelic_rpm'
 
 # Use respond_to
-gem "responders"
+gem 'responders', '~> 2.0'
 
 group :development, :test do
   # Debugging gems

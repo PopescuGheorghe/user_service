@@ -21,10 +21,10 @@ class User < ActiveRecord::Base
   # _options - parameter that is provided by the standard method
   # returns - hash with user data
   def as_json(_options = {})
-    {
-      'id'          => id,
-      'email'       => email,
-      'auth_token'  => auth_token
+    custom_response = {
+      id: id,
+      email: email
     }
+    _options.empty? ? custom_response : super
   end
 end

@@ -13,7 +13,7 @@ module Api
           user.generate_authentication_token!
           user.save
 
-          render json: build_data_object(user), status: 200
+          render json: { success:true, data: user.as_json(only: :auth_token) }, status: 200
         else
          fail InvalidAPIRequest.new(I18n.t('sessions.create.error'), 401)
         end

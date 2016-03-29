@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Api::V1::SessionsController do
+describe Api::V1::SessionsController, type: :controller do
   describe 'POST #create' do
     before(:each) do
       @user = FactoryGirl.create :user
@@ -18,8 +18,6 @@ describe Api::V1::SessionsController do
         expected_response = {
           'success' => true,
           'data' => {
-            id: @user.id,
-            email: @user.email,
             auth_token: @user.auth_token
           }
         }

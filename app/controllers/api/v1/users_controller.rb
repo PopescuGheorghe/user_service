@@ -17,7 +17,7 @@ module Api
         if user.save
           render json: build_data_object(user), status: 201
         else
-          render json: build_error_object(user), status: 403
+          render json: build_error_object(user), status: 422
         end
       end
 
@@ -26,7 +26,7 @@ module Api
         if user.update(user_params)
           render json: build_data_object(user), status: 200
         else
-          render json: build_error_object(user), status: 403
+          render json: build_error_object(user), status: 422
         end
       end
 
@@ -35,7 +35,7 @@ module Api
         if user.destroy
           render json: build_data_object([]), status: 200
         else
-          render json: build_error_object(user), status: 403
+          render json: build_error_object(user), status: 422
         end
       end
 

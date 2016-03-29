@@ -186,7 +186,7 @@ DEPENDENCIES
   rails (= 4.2.4)
   rails-api
   rails-i18n (~> 4.0.0)
-  responders
+  responders (~> 2.0)
   rspec-rails
   shoulda-matchers
   simplecov

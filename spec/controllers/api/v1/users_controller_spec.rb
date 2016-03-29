@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Api::V1::UsersController do
+describe Api::V1::UsersController, type: :controller do
   before :each do
     @user = FactoryGirl.create :user
     @user.generate_authentication_token!
@@ -34,19 +34,16 @@ describe Api::V1::UsersController do
         success: true,
         data: [
           {
-            id:         @user.id,
-            email:      @user.email,
-            auth_token: @user.auth_token
+            id:    @user.id,
+            email: @user.email
           },
           {
-            id:         user1.id,
-            email:      user1.email,
-            auth_token: user1.auth_token
+            id:    user1.id,
+            email: user1.email
           },
           {
-            id:         user2.id,
-            email:      user2.email,
-            auth_token: user2.auth_token
+            id:    user2.id,
+            email: user2.email
           }
         ]
       }
@@ -83,7 +80,7 @@ describe Api::V1::UsersController do
       post :create, format: :json
       json_response = JSON.parse(response.body, symbolize_names: true)
 
-      expect(response.status).to eql 403
+      expect(response.status).to eql 422
       expect(json_response).to have_key(:errors)
     end
   end
@@ -113,7 +110,7 @@ describe Api::V1::UsersController do
 
       json_response = JSON.parse(response.body, symbolize_names: true)
       expect(json_response).to have_key(:errors)
-      expect(response.status).to eql 403
+      expect(response.status).to eql 422
     end
   end
 
@@ -137,7 +134,7 @@ describe Api::V1::UsersController do
 
       json_response = JSON.parse(response.body, symbolize_names: true)
       expect(json_response).to have_key(:errors)
-      expect(response.status).to eql 403
+      expect(response.status).to eql 422
     end
   end
 end
