@@ -25,6 +25,23 @@ describe Api::V1::UsersController, type: :controller do
     end
   end
 
+  describe 'GET /me' do
+    it 'returns the information about current user' do
+      expected_response = {
+        success: true,
+        data: {
+            id:             @user.id,
+            email:          @user.email,
+        }
+      }
+      
+      get :me, format: :json
+      json_response = JSON.parse(response.body, symbolize_names: true)
+      expect(response.status).to eq 200
+      expect(json_response).to eql expected_response
+    end
+  end
+
   describe 'GET #index' do
     it 'returns the information about all users on a hash' do
       user1 = FactoryGirl.create :user

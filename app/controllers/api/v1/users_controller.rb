@@ -12,6 +12,10 @@ module Api
         respond_with build_data_object(User.find(params[:id]))
       end
 
+      def me
+        respond_with build_data_object(current_user)
+      end
+
       def create
         user = User.new(user_params)
         if user.save
