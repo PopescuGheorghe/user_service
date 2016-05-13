@@ -38,9 +38,9 @@ class User < ActiveRecord::Base
   # returns - hash with user data
   def as_json(options = {})
     custom_response = {
-      id: id,
+      id:    id,
       email: email,
-      role: role
+      role:  role
     }
     options.empty? ? custom_response : super
   end

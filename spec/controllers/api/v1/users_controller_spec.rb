@@ -28,7 +28,7 @@ describe Api::V1::UsersController, type: :controller do
     it 'returns the information about current user' do
       expected_response = {
         success: true,
-        data: {
+        data:    {
           id:    @user.id,
           email: @user.email,
           role:  @user.role
@@ -49,7 +49,7 @@ describe Api::V1::UsersController, type: :controller do
 
       expected_response = {
         success: true,
-        data: [
+        data:    [
           {
             id:    @user.id,
             email: @user.email,
@@ -84,10 +84,10 @@ describe Api::V1::UsersController, type: :controller do
       expected_response = {
         success: true,
         data:
-          {
-            email: user_attributes[:email],
-            role: user_attributes[:role]
-          }
+                 {
+                   email: user_attributes[:email],
+                   role:  user_attributes[:role]
+                 }
       }
       post :create, email: params[:email], password: params[:password], role: params[:role], format: :json
       json_response = JSON.parse(response.body, symbolize_names: true)

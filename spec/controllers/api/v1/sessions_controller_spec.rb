@@ -17,7 +17,7 @@ describe Api::V1::SessionsController, type: :controller do
 
         expected_response = {
           'success' => true,
-          'data' => {
+          'data'    => {
             auth_token: @user.auth_token
           }
         }

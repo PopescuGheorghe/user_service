@@ -27,11 +27,11 @@ module Api
     end
 
     # Hash with exception types and status codes
-    EXCEPTIONS = { ActiveRecord::RecordNotFound => 404,
-                   ActiveRecord::RecordInvalid => 422,
+    EXCEPTIONS = { ActiveRecord::RecordNotFound         => 404,
+                   ActiveRecord::RecordInvalid          => 422,
                    ActiveRecord::DeleteRestrictionError => 422,
-                   Exception::ArgumentError => 422,
-                   CanCan::AccessDenied => 403 }.freeze
+                   Exception::ArgumentError             => 422,
+                   CanCan::AccessDenied                 => 403 }.freeze
 
     # Exception handler for invalid api requests, forms a message like
     # in the same way as our services do
