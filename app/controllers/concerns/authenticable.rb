@@ -20,7 +20,7 @@ module Authenticable
     token ||= request.headers['Authorization']
     user = User.find_by(auth_token: token)
     return unless user.present?
-    user[:token_created_at] + 24.hours > Time.now
+    user[:token_created_at] + 24.hours > Time.now if user[:token_created_at].present?
   end
 
   # Public: Devise methods overwrites
