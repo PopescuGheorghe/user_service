@@ -5,7 +5,7 @@ module Api
       respond_to    :json
 
       def index
-       respond_with build_data_object(User.all)
+        respond_with build_data_object(User.all)
       end
 
       def show
@@ -47,9 +47,8 @@ module Api
       private
 
       def user_params
-        params.permit(:email, :password)
+        params.permit(:email, :password, :role)
       end
-
     end
   end
 end

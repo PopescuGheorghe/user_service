@@ -43,6 +43,7 @@ GEM
       columnize (~> 0.8)
       debugger-linecache (~> 1.2)
       slop (~> 3.6)
+    cancancan (1.10.1)
     coderay (1.1.0)
     columnize (0.9.0)
     concurrent-ruby (1.0.0)
@@ -175,6 +176,7 @@ PLATFORMS
 
 DEPENDENCIES
   byebug (= 3.5.1)
+  cancancan (~> 1.10)
   database_cleaner
   devise (= 3.4.0)
   factory_girl_rails
@@ -192,3 +194,6 @@ DEPENDENCIES
   simplecov
   spring
   timecop
+
+BUNDLED WITH
+   1.11.2

@@ -1,11 +1,10 @@
 source 'https://rubygems.org'
 
-
 gem 'rails', '4.2.4'
 
 gem 'rails-api'
 
-gem 'spring', :group => :development
+gem 'spring', group: :development
 
 # Use postgresql database
 gem 'pg'
@@ -15,6 +14,9 @@ gem 'newrelic_rpm'
 
 # Use respond_to
 gem 'responders', '~> 2.0'
+
+# Roles and abilities
+gem 'cancancan', '~> 1.10'
 
 group :development, :test do
   # Debugging gems
@@ -29,7 +31,7 @@ group :test do
   gem 'timecop'
   gem 'faker'
   gem 'database_cleaner'
-  gem 'simplecov', :require => false
+  gem 'simplecov', require: false
 end
 
 # User management and authorisation gem

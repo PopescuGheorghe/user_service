@@ -6,7 +6,7 @@ Rails.application.routes.draw do
       resources :public do
         get :ping, on: :collection
       end
-      resources :sessions,  :only => [:create, :destroy]
+      resources :sessions, only: [:create, :destroy]
       resources :users do
         get :me, on: :collection
       end

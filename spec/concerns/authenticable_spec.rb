@@ -55,13 +55,13 @@ describe Authenticable, type: :controller do
     end
   end
 
-  describe "#current_user" do
+  describe '#current_user' do
     before do
       @user = FactoryGirl.create :user
-      request.headers["Authorization"] = @user.auth_token
+      request.headers['Authorization'] = @user.auth_token
       allow_any_instance_of(Authentication).to receive(:request).and_return(request)
     end
-    it "returns the user from the authorization header" do
+    it 'returns the user from the authorization header' do
       expect(authentication.current_user.auth_token).to eql @user.auth_token
     end
   end

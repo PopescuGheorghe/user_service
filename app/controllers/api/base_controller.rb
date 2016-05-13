@@ -21,11 +21,17 @@ module Api
       end
     end
 
+    # Override CanCan method to provide custom Ability files
+    def current_ability
+      @current_ability ||= Ability.build_ability_for(current_user)
+    end
+
     # Hash with exception types and status codes
     EXCEPTIONS = { ActiveRecord::RecordNotFound => 404,
                    ActiveRecord::RecordInvalid => 422,
-                   ActiveRecord::DeleteRestrictionError => 422
-                 }
+                   ActiveRecord::DeleteRestrictionError => 422,
+                   Exception::ArgumentError => 422,
+                   CanCan::AccessDenied => 403 }.freeze
 
     # Exception handler for invalid api requests, forms a message like
     # in the same way as our services do
@@ -39,7 +45,7 @@ module Api
           resp_hash = { success: false, errors: [ex.message] }
 
           puts "API Response #{code} is #{resp_hash.inspect} backtrace is #{ex.backtrace.inspect}"
-          resp_hash.merge!('stack_trace' => ex.backtrace) if Rails.env.development?
+          resp_hash['stack_trace'] = ex.backtrace if Rails.env.development?
 
           render text: resp_hash.to_json, status: code
         end
@@ -57,9 +63,9 @@ module Api
     # obj - object that contains the data sent in a request
     # returns json
     def build_error_object(obj)
-      obj_errors = Array.new
-      obj.errors.messages.each do |k,v|
-        obj_errors <<  "#{k} #{v.join}"
+      obj_errors = []
+      obj.errors.messages.each do |k, v|
+        obj_errors << "#{k} #{v.join}"
       end
       { success: false, errors: obj_errors }.to_json
     end

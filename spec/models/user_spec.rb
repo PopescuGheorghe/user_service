@@ -6,6 +6,8 @@ describe User do
   subject { @user }
 
   it { should respond_to(:email) }
+  it { should respond_to(:role) }
+  it { should validate_presence_of(:role) }
   it { should respond_to(:auth_token) }
   it { should validate_uniqueness_of(:auth_token) }
 
@@ -24,5 +26,4 @@ describe User do
   end
 
   it { should be_valid }
-
 end

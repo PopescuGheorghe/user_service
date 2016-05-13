@@ -8,16 +8,15 @@ describe Api::V1::UsersController, type: :controller do
     request.headers['Authorization'] = @user.auth_token
   end
 
-  describe "GET #show" do
-
-    it "returns the information about a reporter on a hash" do
+  describe 'GET #show' do
+    it 'returns the information about a reporter on a hash' do
       get :show, id: @user.id, format: :json
       user_response = JSON.parse(response.body, symbolize_names: true)
       expect(response.status).to eq 200
       expect(user_response[:data][:email]).to eql @user.email
     end
 
-    it "should timeout without activity after 24 hours" do
+    it 'should timeout without activity after 24 hours' do
       @user[:token_created_at] = Time.now - 25.hours
       @user.save
       get :show, id: @user.id, format: :json
@@ -30,11 +29,12 @@ describe Api::V1::UsersController, type: :controller do
       expected_response = {
         success: true,
         data: {
-            id:             @user.id,
-            email:          @user.email,
+          id:    @user.id,
+          email: @user.email,
+          role:  @user.role
         }
       }
-      
+
       get :me, format: :json
       json_response = JSON.parse(response.body, symbolize_names: true)
       expect(response.status).to eq 200
@@ -52,15 +52,18 @@ describe Api::V1::UsersController, type: :controller do
         data: [
           {
             id:    @user.id,
-            email: @user.email
+            email: @user.email,
+            role:  @user.role
           },
           {
             id:    user1.id,
-            email: user1.email
+            email: user1.email,
+            role:  user1.role
           },
           {
             id:    user2.id,
-            email: user2.email
+            email: user2.email,
+            role:  user2.role
           }
         ]
       }
@@ -82,10 +85,11 @@ describe Api::V1::UsersController, type: :controller do
         success: true,
         data:
           {
-            email: user_attributes[:email]
+            email: user_attributes[:email],
+            role: user_attributes[:role]
           }
       }
-      post :create, email: params[:email], password: params[:password], format: :json
+      post :create, email: params[:email], password: params[:password], role: params[:role], format: :json
       json_response = JSON.parse(response.body, symbolize_names: true)
 
       json_response[:data] = json_response[:data].except(:id, :auth_token)
@@ -116,7 +120,7 @@ describe Api::V1::UsersController, type: :controller do
       patch :update, params, format: :json
       json_response = JSON.parse(response.body, symbolize_names: true)
       expect(response.status).to eql 200
-      expect(user.reload.valid_password? params[:password]).to eql true
+      expect(user.reload.valid_password?(params[:password])).to eql true
     end
 
     it 'should render proper errors' do
