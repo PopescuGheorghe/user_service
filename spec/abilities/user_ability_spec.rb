@@ -15,8 +15,8 @@ describe 'User' do
       subject(:ability) { Ability.build_ability_for(user) }
       other_user = FactoryGirl.create :user
       it { is_expected.to have_abilities([:create, :read, :update, :destroy, :password, :me], user) }
-      it { is_expected.to not_have_abilities([:create, :update, :destroy, :password, :me], other_user) }
-      it { is_expected.to have_abilities([:read]), other_user }
+      it { is_expected.to not_have_abilities([:update, :destroy, :password, :me], other_user) }
+      it { is_expected.to have_abilities([:read, :create]), other_user }
     end
   end
 end
