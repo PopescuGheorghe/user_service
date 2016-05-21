@@ -15,13 +15,6 @@ describe Api::V1::UsersController, type: :controller do
       expect(response.status).to eq 200
       expect(user_response[:data][:email]).to eql @user.email
     end
-
-    it 'should timeout without activity after 24 hours' do
-      @user[:token_created_at] = Time.now - 25.hours
-      @user.save
-      get :show, id: @user.id, format: :json
-      expect(response.status).to eq 401
-    end
   end
 
   describe 'GET /me' do

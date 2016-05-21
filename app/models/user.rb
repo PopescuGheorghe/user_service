@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
   def generate_authentication_token!
     loop do
       self.auth_token = Devise.friendly_token
-      self.token_created_at = Time.now
+      self.token_created_at = Time.current
       break auth_token unless self.class.exists?(auth_token: auth_token)
     end
   end

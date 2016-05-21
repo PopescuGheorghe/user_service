@@ -2,6 +2,8 @@ en:
   sessions:
     create:
       error: "Invalid username or password"
+    destroy:
+      error: "Invalid token"
   api:
     response:
       unauthorized: "Unauthorized access"

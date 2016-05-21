@@ -1,7 +1,6 @@
 module Api
   module V1
     class UsersController < Api::BaseController
-      before_filter :authenticate
       respond_to    :json
 
       def index

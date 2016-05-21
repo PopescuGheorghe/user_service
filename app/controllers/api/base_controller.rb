@@ -6,8 +6,6 @@ module Api
     # minimum required controller functionality for rendering, proper mime-type
     # setting, and rescue_from functionality
 
-    include Authenticable
-
     # Class used to handle API response, and specific error code
     class InvalidAPIRequest < StandardError
       attr_reader :code
@@ -19,6 +17,12 @@ module Api
         super(message)
         @code = code
       end
+    end
+
+    # Public: Devise methods overwrites
+    # returns User
+    def current_user
+      User.find_by(auth_token: request.headers['Authorization'])
     end
 
     # Override CanCan method to provide custom Ability files
