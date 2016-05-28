@@ -7,5 +7,5 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 # Create first user
-user = User.create(email: 'user@example.com', password: 'password', password_confirmation: 'password')
+user = User.create(email: 'user@example.com', password: 'password', role: 'admin', password_confirmation: 'password')
 user.save
