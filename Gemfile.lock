@@ -202,7 +202,7 @@ DEPENDENCIES
   newrelic_rpm
   pg
   pry-byebug (= 2.0.0)
-  rails (= 4.2.4)
+  rails
   rails-api
   rails-i18n (~> 4.0.0)
   responders (~> 2.0)
@@ -212,6 +212,9 @@ DEPENDENCIES
   spring
   timecop
   webmock
+
+RUBY VERSION
+   ruby 2.3.0p0
 
 BUNDLED WITH
    1.12.5
