@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Api::V1::UsersController, type: :controller do
   before :each do
     @user = FactoryGirl.create :user
-    @user.generate_authentication_token!
+    @user.auth_token = 'token123'
     @user.save!
     request.headers['Authorization'] = @user.auth_token
   end

@@ -4,10 +4,19 @@ describe Api::V1::SessionsController, type: :controller do
   describe 'POST #create' do
     before(:each) do
       @user = FactoryGirl.create :user
+      @base_uri = ENV['authorization_service']
     end
 
     context 'when the credentials are correct' do
       before(:each) do
+        stub_request(:post, "#{@base_uri}/generate_key")
+          .with(body: "id=#{@user.id}")
+          .to_return(status: 200, body: {
+            'success' => true,
+            'data' => {
+              'token' => 'token123'
+            }
+          }.to_json, headers: {})
         credentials = { email: @user.email, password: @user.password }
         post :create, credentials, format: :json
       end
@@ -18,7 +27,7 @@ describe Api::V1::SessionsController, type: :controller do
         expected_response = {
           'success' => true,
           'data'    => {
-            auth_token: @user.auth_token
+            token: 'token123'
           }
         }
 
@@ -44,29 +53,17 @@ describe Api::V1::SessionsController, type: :controller do
   describe 'DELETE #destroy' do
     before(:each) do
       @user = FactoryGirl.create :user
-      @user.generate_authentication_token!
-      @user.save
       sign_in @user
     end
 
     context 'when the credentials are correct' do
       before(:each) do
-        delete :destroy, id: @user.auth_token
+      stub_request(:delete, "#{ENV['authorization_service']}/delete_key/token123").
+         to_return(:status => 200, :body => "", :headers => {})
+        delete :destroy, id: 'token123'
       end
 
-      it { should respond_with 204 }
-    end
-
-    context 'when the credentials are incorrect' do
-      before(:each) do
-        delete :destroy, id: 1, format: :json
-      end
-
-      it 'returns a json with an error' do
-        json_response = JSON.parse(response.body, symbolize_names: true)
-        expect(json_response).to have_key(:errors)
-        expect(response.status).to eql 401
-      end
+      it { should respond_with 200 }
     end
   end
 end

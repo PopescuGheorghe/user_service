@@ -13,5 +13,4 @@ FactoryGirl.define do
     f.role User::NORMAL.to_s
   end
 
-  before(:create, &:generate_authentication_token!)
 end

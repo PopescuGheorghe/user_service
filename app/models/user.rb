@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-  validates :auth_token, uniqueness: true
   validates :role, presence: true
 
   # Include default devise modules. Others available are:
@@ -21,16 +20,6 @@ class User < ActiveRecord::Base
   # returns - boolean
   def is?(requested_role)
     role == requested_role.to_s
-  end
-
-  # Public: generates an authentication token
-  # returns - token for the user
-  def generate_authentication_token!
-    loop do
-      self.auth_token = Devise.friendly_token
-      self.token_created_at = Time.current
-      break auth_token unless self.class.exists?(auth_token: auth_token)
-    end
   end
 
   # Public: models JSON representation of the object

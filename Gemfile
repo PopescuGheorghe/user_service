@@ -4,6 +4,10 @@ gem 'rails', '4.2.4'
 
 gem 'rails-api'
 
+gem 'httparty'
+
+gem 'figaro'
+
 gem 'spring', group: :development
 
 # Use postgresql database
@@ -32,6 +36,7 @@ group :test do
   gem 'faker'
   gem 'database_cleaner'
   gem 'simplecov', require: false
+  gem 'webmock'
 end
 
 # User management and authorisation gem
