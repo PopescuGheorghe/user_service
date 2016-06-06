@@ -1,1 +1,3 @@
 authorization_service: 'localhost:3001'
+production:
+  authorization_service: 'https://arkham-auth-service.herokuapp.com/'

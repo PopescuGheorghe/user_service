@@ -11,8 +11,6 @@ module Api
         if user.present? && user.valid_password?(user_password)
           sign_in user
           response = AuthKey.new.generate_auth_key(user.id)
-          user.auth_token = response.parsed_response['data']['token']
-          user.save!
           render json: response.parsed_response, status: 200
         else
           raise InvalidAPIRequest.new(I18n.t('sessions.create.error'), 401)

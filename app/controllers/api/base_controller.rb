@@ -22,7 +22,10 @@ module Api
     # Public: Devise methods overwrites
     # returns User
     def current_user
-      User.find_by(auth_token: request.headers['Authorization'])
+      token = request.headers['Authorization']
+      response = AuthKey.new(token).current_user
+      id = response['data']['id']
+      User.find(id)
     end
 
     # Override CanCan method to provide custom Ability files

@@ -3,9 +3,8 @@ require 'spec_helper'
 describe Api::V1::UsersController, type: :controller do
   before :each do
     @user = FactoryGirl.create :user
-    @user.auth_token = 'token123'
-    @user.save!
-    request.headers['Authorization'] = @user.auth_token
+    @auth_token = 'token123'
+    request.headers['Authorization'] = @auth_token
   end
 
   describe 'GET #show' do
@@ -19,6 +18,9 @@ describe Api::V1::UsersController, type: :controller do
 
   describe 'GET /me' do
     it 'returns the information about current user' do
+      stub_request(:get, "http://localhost:3001/current_user").
+        with(:headers => {'Authorization'=>'token123'}).
+        to_return(:status => 200, :body => { 'success' => true, 'data' => { 'id' => @user.id}}.to_json, :headers => {"Content-Type"=> "application/json"})
       expected_response = {
         success: true,
         data:    {
