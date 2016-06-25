@@ -4,7 +4,13 @@ module Api
       respond_to    :json
 
       def index
-        respond_with build_data_object(User.all)
+        query = 'SELECT row_to_json(u)
+                         FROM (
+                           SELECT id, email, role FROM users
+                         ) u'
+         users =  ActiveRecord::Base.connection.execute(query).values.flatten
+         users.map!{ |x| JSON.parse(x) }
+         render json:  { success: true, data: users} , status: 200
       end
 
       def show
